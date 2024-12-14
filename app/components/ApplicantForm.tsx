@@ -33,6 +33,7 @@ export const ApplicantForm = ({ form, schools }: IApplicantForm) => {
             subtypeOptions={e.subtypeOptions ?? []}
             options={e.id === "educations" ? schools : []}
             required={e.required}
+            setApplicantData={setApplicantData}
           />
         );
       default:

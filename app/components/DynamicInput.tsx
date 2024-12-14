@@ -8,26 +8,45 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 export const DynamicInput = ({
   title,
   id,
   subtypeOptions,
   options,
+  setApplicantData,
   required,
 }: {
   title: string;
   id: string;
   subtypeOptions: string[];
   options: { id: number; name: string }[];
+  setApplicantData: Dispatch<SetStateAction<object>>;
   required: boolean;
 }) => {
   const [textInput, setTextInput] = useState<string[]>([""]);
-  console.log(textInput);
   const [selectedSubtypeOption, setSelectedSubtypeOption] = useState<
     string[] | undefined
   >(subtypeOptions.length !== 0 ? [subtypeOptions[0]] : undefined);
+
+  useEffect(() => {
+    if (textInput.length !== 0) {
+      setApplicantData((prev) => {
+        return {
+          ...prev,
+          [id]: textInput.map((e: string, index: number) =>
+            selectedSubtypeOption !== undefined
+              ? {
+                  value: e,
+                  type: selectedSubtypeOption[index],
+                }
+              : { value: e },
+          ),
+        };
+      });
+    }
+  }, [textInput]);
   return (
     <Box display="flex" flexDirection="column" marginTop="16px">
       <InputLabel>{title}</InputLabel>
