@@ -97,7 +97,7 @@ const DynamicForm = ({
       <InputLabel>{title}</InputLabel>
       <Box>
         {textInput.map((e, index) => (
-          <div style={{display:"flex", flexDirection:"row", marginBottom: "8px"}}>
+          <div style={{display:"flex", flexDirection:"row", marginBottom: "8px"}} key={`div-${index}`}>
             <Input
               type="text"
               fullWidth
@@ -198,15 +198,16 @@ export default function Home() {
       margin="auto"
       width="80vh"
     >
-      {form.map((e) =>
+      {form.map((e, index) =>
         e.type === "text" ? (
-          <SimpleText id={e.id} label={e.label ?? ""} required={e.required} />
+          <SimpleText id={e.id} label={e.label ?? ""} required={e.required} key={`key-${index}`} />
         ) : (
           <DynamicForm
             title={e.title ?? ""}
             id={e.id}
             options={e.options ?? []}
             required={e.required}
+            key={`key-${index}`}
           />
         ),
       )}
