@@ -79,7 +79,7 @@ export default async function Home() {
       'Content-Type': 'application/json'
     }
   });
-  console.log(response);
+  const schools = await response.json()
   return (
     <Box
       display="flex"
@@ -101,6 +101,7 @@ export default async function Home() {
           />
         ),
       )}
+      {schools.map((school: any) => school.name)}
     </Box>
   );
 }
