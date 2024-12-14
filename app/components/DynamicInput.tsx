@@ -46,12 +46,22 @@ export const DynamicInput = ({
             ),
           };
         });
-      } else {
+      } else if (id === "educations") {
         setApplicantData((prev) => {
           return {
             ...prev,
             [id]: textInput.map((e: string) => ({
               school_id: options.find((opt) => opt.name === e)?.id,
+            })),
+          };
+        });
+      } else if (id === "employments") {
+        setApplicantData((prev) => {
+          return {
+            ...prev,
+            [id]: textInput.map((e: string, index: number) => ({
+              company_name: e,
+              title: "",
             })),
           };
         });
