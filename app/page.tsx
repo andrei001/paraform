@@ -1,7 +1,7 @@
 import {
   Box,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { DynamicForm } from "./components/DynamicForm";
 import { SimpleText } from "./components/SimpleText";
 
