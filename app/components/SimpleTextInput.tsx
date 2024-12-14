@@ -17,11 +17,12 @@ export const SimpleText = ({
   const [textInput, setTextInput] = useState<string>("");
 
   useEffect(() => {
-    setApplicantData((prev) => {
-      return { ...prev, [id]: { value: textInput } };
-    });
+    if (textInput !== "") {
+      setApplicantData((prev) => {
+        return { ...prev, [id]: { value: textInput } };
+      });
+    }
   }, [textInput]);
-  console.log(textInput);
   return (
     <Box display="flex" flexDirection="column">
       <InputLabel htmlFor={id}>{label}</InputLabel>
