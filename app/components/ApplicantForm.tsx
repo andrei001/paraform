@@ -1,5 +1,7 @@
+"use client"
+
 import { Box } from "@mui/material";
-import { DynamicForm } from "./DynamicInput";
+import { DynamicInput } from "./DynamicInput";
 import { SimpleText } from "./SimpleTextInput";
 import { FormItem, FormTypes } from "../types";
 
@@ -14,7 +16,7 @@ export const ApplicantForm = ({ form }: IApplicantForm) => {
         return <SimpleText id={e.id} label={e.label} required={e.required} />;
       case FormTypes.Dynamic:
         return (
-          <DynamicForm
+          <DynamicInput
             title={e.title}
             id={e.id}
             options={e.subtypeOptions ?? []}

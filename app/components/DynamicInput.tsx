@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 
-export const DynamicForm = ({
+export const DynamicInput = ({
   title,
   id,
   options,
