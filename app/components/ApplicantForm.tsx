@@ -4,6 +4,7 @@ import { Box } from "@mui/material";
 import { DynamicInput } from "./DynamicInput";
 import { SimpleText } from "./SimpleTextInput";
 import { FormItem, FormTypes, School } from "../types";
+import { useState } from "react";
 
 interface IApplicantForm {
   form: FormItem[];
@@ -11,10 +12,19 @@ interface IApplicantForm {
 }
 
 export const ApplicantForm = ({ form, schools }: IApplicantForm) => {
+  const [applicantData, setApplicantData] = useState({});
+  console.log(applicantData);
   const getMatchingFormInput = (e: FormItem) => {
     switch (e.type) {
       case FormTypes.Text:
-        return <SimpleText id={e.id} label={e.label} required={e.required} />;
+        return (
+          <SimpleText
+            id={e.id}
+            label={e.label}
+            required={e.required}
+            setApplicantData={setApplicantData}
+          />
+        );
       case FormTypes.Dynamic:
         return (
           <DynamicInput
