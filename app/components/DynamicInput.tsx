@@ -14,11 +14,13 @@ export const DynamicInput = ({
   title,
   id,
   subtypeOptions,
+  options,
   required,
 }: {
   title: string;
   id: string;
   subtypeOptions: string[];
+  options: {id: number, name: string}[];
   required: boolean;
 }) => {
   const [textInput, setTextInput] = useState<string[]>([""]);
@@ -39,6 +41,7 @@ export const DynamicInput = ({
             }}
             key={`div-${index}`}
           >
+            { options.length === 0 ?
             <Input
               type="text"
               fullWidth
@@ -51,7 +54,10 @@ export const DynamicInput = ({
                 ])
               }
               required={required}
-            />
+            /> : null
+
+}
+
             {subtypeOptions.length !== 0 && selectedOption !== undefined && (
               <Select
                 value={selectedOption[index]}

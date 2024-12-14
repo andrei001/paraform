@@ -21,6 +21,7 @@ export const ApplicantForm = ({ form, schools }: IApplicantForm) => {
             title={e.title}
             id={e.id}
             subtypeOptions={e.subtypeOptions ?? []}
+            options={e.id === "educations" ? schools : []}
             required={e.required}
           />
         );
