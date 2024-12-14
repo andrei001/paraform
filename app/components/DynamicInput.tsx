@@ -31,7 +31,7 @@ export const DynamicInput = ({
   >(subtypeOptions.length !== 0 ? [subtypeOptions[0]] : undefined);
 
   useEffect(() => {
-    if (textInput.length !== 0) {
+    if (textInput.length !== 0 && textInput[0].length !== 0) {
       setApplicantData((prev) => {
         return {
           ...prev,
