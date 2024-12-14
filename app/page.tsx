@@ -3,6 +3,7 @@ import {
 } from "@mui/material";
 import { DynamicForm } from "./components/DynamicForm";
 import { SimpleText } from "./components/SimpleText";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 const form = [
   {
@@ -71,25 +72,20 @@ const form = [
   { type: "employments", id: "employments", required: false },
 ];
 
-export default function Home() {
-  //const [schoolsList] = useState<string | undefined>(undefined);
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const response = await fetch('https://harvest.greenhouse.io/v1/schools', {
-  //       method: 'GET',
-  //       mode: 'cors',
-  //       headers: {
-  //         'Authorization': 'Basic ZjA2YjJiMTUzZTAxNmY4ZTdjMzYzMjYyN2FmNTZiMWQtNzo=',
-  //         'Content-Type': 'application/json'
-  //       }
-  //     });
-  //     const result = await response.json();
-  //     console.log(result)
-  //     setSchoolsList(result);
-  //   };
+export const getServerSideProps = (async () => {
+  const response = await fetch('https://harvest.greenhouse.io/v1/schools', {
+          method: 'GET',
+          headers: {
+            'Authorization': 'Basic ZjA2YjJiMTUzZTAxNmY4ZTdjMzYzMjYyN2FmNTZiMWQtNzo=',
+            'Content-Type': 'application/json'
+          }
+        });
+  const schools = await response.json()
+  return { props: { schools } }
+}) satisfies GetServerSideProps<{ schools: any }>
 
-  //   fetchData();
-  // }, []);
+export default function Home({schools}:InferGetServerSidePropsType<typeof getServerSideProps>) {
+  console.log(schools);
   return (
     <Box
       display="flex"
