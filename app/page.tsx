@@ -101,7 +101,7 @@ export default async function Home() {
           />
         ),
       )}
-      {schools.map((school: any) => school.name)}
+      {schools.map((school: { name: string }) => school.name)}
     </Box>
   );
 }
