@@ -73,8 +73,7 @@ const form = [
 ];
 
 export default function Home() {
-  const [schoolsList] = useState<string | undefined>(undefined);
-  console.log(schoolsList)
+  //const [schoolsList] = useState<string | undefined>(undefined);
   // useEffect(() => {
   //   const fetchData = async () => {
   //     const response = await fetch('https://harvest.greenhouse.io/v1/schools', {
