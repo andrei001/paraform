@@ -32,19 +32,30 @@ export const DynamicInput = ({
 
   useEffect(() => {
     if (textInput.length !== 0 && textInput[0].length !== 0) {
-      setApplicantData((prev) => {
-        return {
-          ...prev,
-          [id]: textInput.map((e: string, index: number) =>
-            selectedSubtypeOption !== undefined
-              ? {
-                  value: e,
-                  type: selectedSubtypeOption[index],
-                }
-              : { value: e },
-          ),
-        };
-      });
+      if (id !== "educations") {
+        setApplicantData((prev) => {
+          return {
+            ...prev,
+            [id]: textInput.map((e: string, index: number) =>
+              selectedSubtypeOption !== undefined
+                ? {
+                    value: e,
+                    type: selectedSubtypeOption[index],
+                  }
+                : { value: e },
+            ),
+          };
+        });
+      } else {
+        setApplicantData((prev) => {
+          return {
+            ...prev,
+            [id]: textInput.map((e: string) => ({
+              school_id: options.find((opt) => opt.name === e)?.id,
+            })),
+          };
+        });
+      }
     }
   }, [textInput, selectedSubtypeOption]);
   return (
