@@ -1,3 +1,5 @@
+"use client"
+
 import { Box, Input, InputLabel } from "@mui/material";
 import { useState } from "react";
 
