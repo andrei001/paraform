@@ -80,7 +80,7 @@ export const DynamicInput = ({
                 onChange={(e) =>
                   setTextInput([
                     ...textInput.slice(0, index),
-                    e.target.value,
+                    e.target.value + "",
                     ...textInput.slice(index + 1),
                   ])
                 }
