@@ -25,9 +25,9 @@ export const DynamicInput = ({
 }) => {
   const [textInput, setTextInput] = useState<string[]>([""]);
   console.log(textInput);
-  const [selectedSubtypeOption, setSelectedSubtypeOption] = useState<string[] | undefined>(
-    subtypeOptions.length !== 0 ? [subtypeOptions[0]] : undefined,
-  );
+  const [selectedSubtypeOption, setSelectedSubtypeOption] = useState<
+    string[] | undefined
+  >(subtypeOptions.length !== 0 ? [subtypeOptions[0]] : undefined);
   return (
     <Box display="flex" flexDirection="column" marginTop="16px">
       <InputLabel>{title}</InputLabel>
@@ -55,28 +55,50 @@ export const DynamicInput = ({
                 }
                 required={required}
               />
-            ) : null}
-
-            {subtypeOptions.length !== 0 && selectedSubtypeOption !== undefined && (
+            ) : (
               <Select
-                value={selectedSubtypeOption[index]}
+                value={textInput[index]}
                 onChange={(e) =>
-                  setSelectedSubtypeOption([
-                    ...selectedSubtypeOption.slice(0, index),
+                  setTextInput([
+                    ...textInput.slice(0, index),
                     e.target.value,
-                    ...selectedSubtypeOption.slice(index + 1),
+                    ...textInput.slice(index + 1),
                   ])
                 }
                 label={title}
                 variant="standard"
               >
-                {subtypeOptions.map((opt: string, index: number) => (
-                  <MenuItem key={index} value={opt}>
-                    {opt}
-                  </MenuItem>
-                ))}
+                {options.map(
+                  (opt: { id: number; name: string }, index: number) => (
+                    <MenuItem key={index} value={opt.name}>
+                      {opt.name}
+                    </MenuItem>
+                  ),
+                )}
               </Select>
             )}
+
+            {subtypeOptions.length !== 0 &&
+              selectedSubtypeOption !== undefined && (
+                <Select
+                  value={selectedSubtypeOption[index]}
+                  onChange={(e) =>
+                    setSelectedSubtypeOption([
+                      ...selectedSubtypeOption.slice(0, index),
+                      e.target.value,
+                      ...selectedSubtypeOption.slice(index + 1),
+                    ])
+                  }
+                  label={title}
+                  variant="standard"
+                >
+                  {subtypeOptions.map((opt: string, index: number) => (
+                    <MenuItem key={index} value={opt}>
+                      {opt}
+                    </MenuItem>
+                  ))}
+                </Select>
+              )}
           </div>
         ))}
       </Box>
@@ -84,7 +106,10 @@ export const DynamicInput = ({
         onClick={() => {
           setTextInput([...textInput, ""]);
           if (selectedSubtypeOption !== undefined)
-            setSelectedSubtypeOption([...selectedSubtypeOption, subtypeOptions[0]]);
+            setSelectedSubtypeOption([
+              ...selectedSubtypeOption,
+              subtypeOptions[0],
+            ]);
         }}
       >
         Add Another
