@@ -89,6 +89,7 @@ const DynamicForm = ({
   required: boolean;
 }) => {
   const [textInput, setTextInput] = useState<string[]>([""]);
+  console.log(textInput)
   const [selectedOption, setSelectedOption] = useState<string[] | undefined>(
     options.length !== 0 ? [options[0]] : undefined,
   );
@@ -172,7 +173,7 @@ const SimpleText = ({
 
 export default function Home() {
   const [schoolsList, setSchoolsList] = useState<string | undefined>(undefined);
-
+  console.log(schoolsList)
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('https://harvest.greenhouse.io/v1/schools', {
