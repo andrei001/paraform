@@ -46,7 +46,7 @@ export const DynamicInput = ({
         };
       });
     }
-  }, [textInput]);
+  }, [textInput, selectedSubtypeOption]);
   return (
     <Box display="flex" flexDirection="column" marginTop="16px">
       <InputLabel>{title}</InputLabel>
