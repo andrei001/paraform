@@ -12,7 +12,7 @@ interface IApplicantForm {
 }
 
 export const ApplicantForm = ({ form, schools }: IApplicantForm) => {
-  const [applicantData, setApplicantData] = useState({});
+  const [applicantData, setApplicantData] = useState<object>({});
   console.log(applicantData);
   const getMatchingFormInput = (e: FormItem) => {
     switch (e.type) {

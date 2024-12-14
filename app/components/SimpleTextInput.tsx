@@ -12,7 +12,7 @@ export const SimpleText = ({
   id: string;
   label: string;
   required: boolean;
-  setApplicantData: Dispatch<SetStateAction<{}>>;
+  setApplicantData: Dispatch<SetStateAction<object>>;
 }) => {
   const [textInput, setTextInput] = useState<string>("");
 
