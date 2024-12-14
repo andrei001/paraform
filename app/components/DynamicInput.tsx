@@ -20,12 +20,12 @@ export const DynamicInput = ({
   title: string;
   id: string;
   subtypeOptions: string[];
-  options: {id: number, name: string}[];
+  options: { id: number; name: string }[];
   required: boolean;
 }) => {
   const [textInput, setTextInput] = useState<string[]>([""]);
   console.log(textInput);
-  const [selectedOption, setSelectedOption] = useState<string[] | undefined>(
+  const [selectedSubtypeOption, setSelectedSubtypeOption] = useState<string[] | undefined>(
     subtypeOptions.length !== 0 ? [subtypeOptions[0]] : undefined,
   );
   return (
@@ -41,31 +41,30 @@ export const DynamicInput = ({
             }}
             key={`div-${index}`}
           >
-            { options.length === 0 ?
-            <Input
-              type="text"
-              fullWidth
-              id={id}
-              onChange={(e) =>
-                setTextInput([
-                  ...textInput.slice(0, index),
-                  e.target.value,
-                  ...textInput.slice(index + 1),
-                ])
-              }
-              required={required}
-            /> : null
-
-}
-
-            {subtypeOptions.length !== 0 && selectedOption !== undefined && (
-              <Select
-                value={selectedOption[index]}
+            {options.length === 0 ? (
+              <Input
+                type="text"
+                fullWidth
+                id={id}
                 onChange={(e) =>
-                  setSelectedOption([
-                    ...selectedOption.slice(0, index),
+                  setTextInput([
+                    ...textInput.slice(0, index),
                     e.target.value,
-                    ...selectedOption.slice(index + 1),
+                    ...textInput.slice(index + 1),
+                  ])
+                }
+                required={required}
+              />
+            ) : null}
+
+            {subtypeOptions.length !== 0 && selectedSubtypeOption !== undefined && (
+              <Select
+                value={selectedSubtypeOption[index]}
+                onChange={(e) =>
+                  setSelectedSubtypeOption([
+                    ...selectedSubtypeOption.slice(0, index),
+                    e.target.value,
+                    ...selectedSubtypeOption.slice(index + 1),
                   ])
                 }
                 label={title}
@@ -84,8 +83,8 @@ export const DynamicInput = ({
       <Button
         onClick={() => {
           setTextInput([...textInput, ""]);
-          if (selectedOption !== undefined)
-            setSelectedOption([...selectedOption, subtypeOptions[0]]);
+          if (selectedSubtypeOption !== undefined)
+            setSelectedSubtypeOption([...selectedSubtypeOption, subtypeOptions[0]]);
         }}
       >
         Add Another
