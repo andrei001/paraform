@@ -1,4 +1,4 @@
-import { FormItem, FormTypes, School } from "./types";
+import { FormItem, FormTypes } from "./types";
 import { ApplicantForm } from "./components/ApplicantForm";
 
 const form: FormItem[] = [

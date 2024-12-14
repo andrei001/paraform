@@ -13,6 +13,7 @@ export const SimpleText = ({
   required: boolean;
 }) => {
   const [textInput, setTextInput] = useState<string>("");
+  console.log(textInput)
   return (
     <Box display="flex" flexDirection="column">
       <InputLabel htmlFor={id}>{label}</InputLabel>
