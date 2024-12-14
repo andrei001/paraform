@@ -32,7 +32,7 @@ export const DynamicInput = ({
 
   useEffect(() => {
     if (textInput.length !== 0 && textInput[0].length !== 0) {
-      if (id !== "educations") {
+      if (id !== "educations" && id !== "employments") {
         setApplicantData((prev) => {
           return {
             ...prev,
