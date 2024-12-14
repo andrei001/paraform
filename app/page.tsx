@@ -79,7 +79,7 @@ export default async function Home() {
       'Content-Type': 'application/json'
     }
   });
-const schools = await response.json()
+const schools = await response.text()
   console.log(schools);
   return (
     <Box
