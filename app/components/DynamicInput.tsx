@@ -67,6 +67,7 @@ export const DynamicInput = ({
                 }
                 label={title}
                 variant="standard"
+                fullWidth
               >
                 {options.map(
                   (opt: { id: number; name: string }, index: number) => (
