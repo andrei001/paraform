@@ -13,18 +13,18 @@ import { useState } from "react";
 export const DynamicInput = ({
   title,
   id,
-  options,
+  subtypeOptions,
   required,
 }: {
   title: string;
   id: string;
-  options: string[];
+  subtypeOptions: string[];
   required: boolean;
 }) => {
   const [textInput, setTextInput] = useState<string[]>([""]);
   console.log(textInput);
   const [selectedOption, setSelectedOption] = useState<string[] | undefined>(
-    options.length !== 0 ? [options[0]] : undefined,
+    subtypeOptions.length !== 0 ? [subtypeOptions[0]] : undefined,
   );
   return (
     <Box display="flex" flexDirection="column" marginTop="16px">
@@ -52,7 +52,7 @@ export const DynamicInput = ({
               }
               required={required}
             />
-            {options.length !== 0 && selectedOption !== undefined && (
+            {subtypeOptions.length !== 0 && selectedOption !== undefined && (
               <Select
                 value={selectedOption[index]}
                 onChange={(e) =>
@@ -65,7 +65,7 @@ export const DynamicInput = ({
                 label={title}
                 variant="standard"
               >
-                {options.map((opt: string, index: number) => (
+                {subtypeOptions.map((opt: string, index: number) => (
                   <MenuItem key={index} value={opt}>
                     {opt}
                   </MenuItem>
@@ -79,7 +79,7 @@ export const DynamicInput = ({
         onClick={() => {
           setTextInput([...textInput, ""]);
           if (selectedOption !== undefined)
-            setSelectedOption([...selectedOption, options[0]]);
+            setSelectedOption([...selectedOption, subtypeOptions[0]]);
         }}
       >
         Add Another

@@ -3,13 +3,14 @@
 import { Box } from "@mui/material";
 import { DynamicInput } from "./DynamicInput";
 import { SimpleText } from "./SimpleTextInput";
-import { FormItem, FormTypes } from "../types";
+import { FormItem, FormTypes, School } from "../types";
 
 interface IApplicantForm {
   form: FormItem[];
+  schools: School[];
 }
 
-export const ApplicantForm = ({ form }: IApplicantForm) => {
+export const ApplicantForm = ({ form, schools }: IApplicantForm) => {
   const getMatchingFormInput = (e: FormItem) => {
     switch (e.type) {
       case FormTypes.Text:
@@ -19,7 +20,7 @@ export const ApplicantForm = ({ form }: IApplicantForm) => {
           <DynamicInput
             title={e.title}
             id={e.id}
-            options={e.subtypeOptions ?? []}
+            subtypeOptions={e.subtypeOptions ?? []}
             required={e.required}
           />
         );

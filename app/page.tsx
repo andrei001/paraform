@@ -90,5 +90,5 @@ export default async function Home() {
     },
   );
   const schools = await schoolsResponse.json();
-  return <ApplicantForm form={form} />;
+  return <ApplicantForm form={form} schools={schools ?? []} />;
 }
