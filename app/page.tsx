@@ -72,19 +72,15 @@ const form = [
   { type: "employments", id: "employments", required: false },
 ];
 
-export const getServerSideProps = (async () => {
+export default async function Home() {
   const response = await fetch('https://harvest.greenhouse.io/v1/schools', {
-          method: 'GET',
-          headers: {
-            'Authorization': 'Basic ZjA2YjJiMTUzZTAxNmY4ZTdjMzYzMjYyN2FmNTZiMWQtNzo=',
-            'Content-Type': 'application/json'
-          }
-        });
-  const schools = await response.json()
-  return { props: { schools } }
-}) satisfies GetServerSideProps<{ schools: any }>
-
-export default function Home({schools}:InferGetServerSidePropsType<typeof getServerSideProps>) {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Basic ZjA2YjJiMTUzZTAxNmY4ZTdjMzYzMjYyN2FmNTZiMWQtNzo=',
+      'Content-Type': 'application/json'
+    }
+  });
+const schools = await response.json()
   console.log(schools);
   return (
     <Box
