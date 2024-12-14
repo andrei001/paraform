@@ -179,6 +179,7 @@ export default function Home() {
     const fetchData = async () => {
       const response = await fetch('https://harvest.greenhouse.io/v1/schools', {
         method: 'GET',
+        mode: 'no-cors',
         headers: {
           'Authorization': 'Basic ZjA2YjJiMTUzZTAxNmY4ZTdjMzYzMjYyN2FmNTZiMWQtNzo=',
           'Content-Type': 'application/json'
