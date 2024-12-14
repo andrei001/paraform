@@ -3,7 +3,6 @@ import {
 } from "@mui/material";
 import { DynamicForm } from "./components/DynamicForm";
 import { SimpleText } from "./components/SimpleText";
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
 const form = [
   {
