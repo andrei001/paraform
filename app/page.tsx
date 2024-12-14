@@ -1,14 +1,9 @@
-"use client";
-
 import {
   Box,
-  Button,
-  Input,
-  InputLabel,
-  MenuItem,
-  Select,
 } from "@mui/material";
 import { useEffect, useState } from "react";
+import { DynamicForm } from "./components/DynamicForm";
+import { SimpleText } from "./components/SimpleText";
 
 const form = [
   {
@@ -77,121 +72,26 @@ const form = [
   { type: "employments", id: "employments", required: false },
 ];
 
-const DynamicForm = ({
-  title,
-  id,
-  options,
-  required,
-}: {
-  title: string;
-  id: string;
-  options: string[];
-  required: boolean;
-}) => {
-  const [textInput, setTextInput] = useState<string[]>([""]);
-  console.log(textInput)
-  const [selectedOption, setSelectedOption] = useState<string[] | undefined>(
-    options.length !== 0 ? [options[0]] : undefined,
-  );
-  return (
-    <Box display="flex" flexDirection="column" marginTop="16px">
-      <InputLabel>{title}</InputLabel>
-      <Box>
-        {textInput.map((e, index) => (
-          <div style={{display:"flex", flexDirection:"row", marginBottom: "8px"}} key={`div-${index}`}>
-            <Input
-              type="text"
-              fullWidth
-              id={id}
-              onChange={(e) =>
-                setTextInput([
-                  ...textInput.slice(0, index),
-                  e.target.value,
-                  ...textInput.slice(index + 1),
-                ])
-              }
-              required={required}
-            />
-            {options.length !== 0 && selectedOption !== undefined && (
-              <Select
-                value={selectedOption[index]}
-                onChange={(e) =>
-                  setSelectedOption([
-                    ...selectedOption.slice(0, index),
-                    e.target.value,
-                    ...selectedOption.slice(index + 1),
-                  ])
-                }
-                label={title}
-                variant="standard"
-              >
-                {options.map((opt: string, index: number) => (
-                  <MenuItem key={index} value={opt}>
-                    {opt}
-                  </MenuItem>
-                ))}
-              </Select>
-            )}
-          </div>
-        ))}
-      </Box>
-      <Button
-          onClick={() => {
-            setTextInput([...textInput, ""]);
-            if (selectedOption !== undefined)
-              setSelectedOption([...selectedOption, options[0]]);
-          }}
-        >
-          Add Another
-        </Button>
-    </Box>
-  );
-};
-
-const SimpleText = ({
-  id,
-  label,
-  required,
-}: {
-  id: string;
-  label: string;
-  required: boolean;
-}) => {
-  const [textInput, setTextInput] = useState<string>("");
-  console.log(textInput)
-  return (
-    <Box display="flex" flexDirection="column">
-      <InputLabel htmlFor={id}>{label}</InputLabel>
-      <Input
-        required={required}
-        type="text"
-        id={id}
-        onChange={(e) => setTextInput(e.target.value)}
-      />
-    </Box>
-  );
-};
-
 export default function Home() {
-  const [schoolsList, setSchoolsList] = useState<string | undefined>(undefined);
+  const [schoolsList] = useState<string | undefined>(undefined);
   console.log(schoolsList)
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('https://harvest.greenhouse.io/v1/schools', {
-        method: 'GET',
-        mode: 'cors',
-        headers: {
-          'Authorization': 'Basic ZjA2YjJiMTUzZTAxNmY4ZTdjMzYzMjYyN2FmNTZiMWQtNzo=',
-          'Content-Type': 'application/json'
-        }
-      });
-      const result = await response.json();
-      console.log(result)
-      setSchoolsList(result);
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const response = await fetch('https://harvest.greenhouse.io/v1/schools', {
+  //       method: 'GET',
+  //       mode: 'cors',
+  //       headers: {
+  //         'Authorization': 'Basic ZjA2YjJiMTUzZTAxNmY4ZTdjMzYzMjYyN2FmNTZiMWQtNzo=',
+  //         'Content-Type': 'application/json'
+  //       }
+  //     });
+  //     const result = await response.json();
+  //     console.log(result)
+  //     setSchoolsList(result);
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
   return (
     <Box
       display="flex"
