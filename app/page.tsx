@@ -71,6 +71,11 @@ const form = [
   { type: "employments", id: "employments", required: false },
 ];
 
+interface School {
+  name: string;
+  id: number;
+}
+
 export default async function Home() {
   const response = await fetch('https://harvest.greenhouse.io/v1/schools', {
     method: 'GET',
@@ -90,18 +95,18 @@ export default async function Home() {
     >
       {form.map((e, index) =>
         e.type === "text" ? (
-          <SimpleText id={e.id} label={e.label ?? ""} required={e.required} key={`key-${index}`} />
+          <SimpleText id={e.id} label={e.label ?? ""} required={e.required} key={`simpleText-${index}`} />
         ) : (
           <DynamicForm
             title={e.title ?? ""}
             id={e.id}
             options={e.options ?? []}
             required={e.required}
-            key={`key-${index}`}
+            key={`dynamicForm-${index}`}
           />
         ),
       )}
-      {schools.map((school: { name: string }) => school.name)}
+      {schools.map((school: School) => school.name)}
     </Box>
   );
 }
