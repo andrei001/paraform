@@ -59,7 +59,7 @@ export const DynamicInput = ({
         setApplicantData((prev) => {
           return {
             ...prev,
-            [id]: textInput.map((e: string, index: number) => ({
+            [id]: textInput.map((e: string) => ({
               company_name: e,
               title: "",
             })),
