@@ -9,11 +9,12 @@ import { useState } from "react";
 interface IApplicantForm {
   form: FormItem[];
   schools: School[];
+  onSubmit: (applicationData: object) => void;
 }
 
-export const ApplicantForm = ({ form, schools }: IApplicantForm) => {
+export const ApplicantForm = ({ form, schools, onSubmit }: IApplicantForm) => {
   const [applicantData, setApplicantData] = useState<object>({});
-  console.log(applicantData)
+  console.log(applicantData);
   const getMatchingFormInput = (e: FormItem) => {
     switch (e.type) {
       case FormTypes.Text:
@@ -52,7 +53,13 @@ export const ApplicantForm = ({ form, schools }: IApplicantForm) => {
       {form.map((e, index) => (
         <div key={`div-${index}`}>{getMatchingFormInput(e)}</div>
       ))}
-      <Button variant="contained" style={{marginTop: "24px", }}>Submit</Button>
+      <Button
+        variant="contained"
+        style={{ marginTop: "24px" }}
+        onClick={onSubmit}
+      >
+        Submit
+      </Button>
     </Box>
   );
 };
