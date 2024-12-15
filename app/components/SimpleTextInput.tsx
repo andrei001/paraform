@@ -19,7 +19,7 @@ export const SimpleText = ({
   useEffect(() => {
     if (textInput !== "") {
       setApplicantData((prev) => {
-        return { ...prev, [id]: { value: textInput } };
+        return { ...prev, [id]: textInput };
       });
     }
   }, [textInput]);
