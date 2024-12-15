@@ -1,6 +1,5 @@
 import { FormItem, FormTypes } from "./types";
 import { ApplicantForm } from "./components/ApplicantForm";
-import { onSubmit } from "./actions";
 
 const form: FormItem[] = [
   {
@@ -93,6 +92,6 @@ export default async function Home() {
   const schools = await schoolsResponse.json();
 
   return (
-    <ApplicantForm form={form} schools={schools ?? []} onSubmit={onSubmit} />
+    <ApplicantForm form={form} schools={schools ?? []} />
   );
 }

@@ -5,16 +5,15 @@ import { DynamicInput } from "./DynamicInput";
 import { SimpleText } from "./SimpleTextInput";
 import { FormItem, FormTypes, School } from "../types";
 import { useState } from "react";
+import { onSubmit } from "../actions";
 
 interface IApplicantForm {
   form: FormItem[];
   schools: School[];
-  onSubmit: (applicationData: object) => void;
 }
 
 export const ApplicantForm = ({ form, schools }: IApplicantForm) => {
   const [applicantData, setApplicantData] = useState<object>({});
-  console.log(applicantData)
   const getMatchingFormInput = (e: FormItem) => {
     switch (e.type) {
       case FormTypes.Text:
@@ -56,6 +55,7 @@ export const ApplicantForm = ({ form, schools }: IApplicantForm) => {
       <Button
         variant="contained"
         style={{ marginTop: "24px" }}
+        onClick={() => onSubmit(applicantData)}
       >
         Submit
       </Button>
