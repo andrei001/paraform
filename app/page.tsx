@@ -1,5 +1,6 @@
 import { FormItem, FormTypes } from "./types";
 import { ApplicantForm } from "./components/ApplicantForm";
+import { getSchools } from "./actions";
 
 const form: FormItem[] = [
   {
@@ -79,19 +80,7 @@ const form: FormItem[] = [
 ];
 
 export default async function Home() {
-  const schoolsResponse = await fetch(
-    "https://harvest.greenhouse.io/v1/schools",
-    {
-      method: "GET",
-      headers: {
-        Authorization: "Basic ZjA2YjJiMTUzZTAxNmY4ZTdjMzYzMjYyN2FmNTZiMWQtNzo=",
-        "Content-Type": "application/json",
-      },
-    },
-  );
-  const schools = await schoolsResponse.json();
+  const schools = await getSchools();
 
-  return (
-    <ApplicantForm form={form} schools={schools ?? []} />
-  );
+  return <ApplicantForm form={form} schools={schools ?? []} />;
 }
