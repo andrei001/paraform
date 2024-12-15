@@ -14,6 +14,9 @@ export const onSubmit = async (applicationData: object) => {
     },
   });
   const success = await res.ok;
+
+  const jsonResponse = await res.json();
+  console.log(jsonResponse);
   return success;
 };
 
