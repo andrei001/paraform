@@ -52,7 +52,7 @@ export const ApplicantForm = ({ form, schools }: IApplicantForm) => {
       {form.map((e, index) => (
         <div key={`div-${index}`}>{getMatchingFormInput(e)}</div>
       ))}
-      <Button>Submit</Button>
+      <Button style={{marginTop: "24px"}}>Submit</Button>
     </Box>
   );
 };
