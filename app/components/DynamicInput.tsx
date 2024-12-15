@@ -62,7 +62,7 @@ export const DynamicInput = ({
             [id]: textInput.map((e: string) => ({
               company_name: e,
               title: "employee",
-              startDate: new Date().toISOString(),
+              start_date: new Date().toISOString(),
             })),
           };
         });
