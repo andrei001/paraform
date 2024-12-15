@@ -1,6 +1,6 @@
 "use client";
 
-import { Box } from "@mui/material";
+import { Box, FormControl } from "@mui/material";
 import { DynamicInput } from "./DynamicInput";
 import { SimpleText } from "./SimpleTextInput";
 import { FormItem, FormTypes, School } from "../types";
@@ -13,7 +13,6 @@ interface IApplicantForm {
 
 export const ApplicantForm = ({ form, schools }: IApplicantForm) => {
   const [applicantData, setApplicantData] = useState<object>({});
-  console.log(applicantData);
   const getMatchingFormInput = (e: FormItem) => {
     switch (e.type) {
       case FormTypes.Text:
@@ -42,16 +41,18 @@ export const ApplicantForm = ({ form, schools }: IApplicantForm) => {
   };
 
   return (
-    <Box
-      display="flex"
-      alignContent="center"
-      flexDirection="column"
-      margin="auto"
-      width="80vh"
+    <FormControl
+      style={{
+        width: "80vh",
+        margin: 'auto',
+        display: 'flex',
+        alignContent: 'center',
+        flexDirection: 'column',
+      }}
     >
       {form.map((e, index) => (
         <div key={`div-${index}`}>{getMatchingFormInput(e)}</div>
       ))}
-    </Box>
+    </FormControl>
   );
 };
