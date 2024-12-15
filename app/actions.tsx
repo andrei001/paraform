@@ -13,8 +13,8 @@ export const onSubmit = async (applicationData: object) => {
       "On-Behalf-Of": "4280249007",
     },
   });
-  const response = await res.json();
-  console.log(response);
+  const success = await res.ok;
+  return success;
 };
 
 export const getSchools = async () => {

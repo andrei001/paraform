@@ -56,8 +56,13 @@ export const ApplicantForm = ({ form, schools }: IApplicantForm) => {
       <Button
         variant="contained"
         style={{ marginTop: "24px" }}
-        onClick={() => {
-          onSubmit(applicantData);
+        onClick={async () => {
+          const success = await onSubmit(applicantData);
+          if(success) {
+            alert("Successfully added candidate!");
+          } else {
+            alert("Failed to add candidate. Please try again.");
+          }
         }}
       >
         Submit
