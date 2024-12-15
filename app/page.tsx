@@ -5,14 +5,14 @@ const form: FormItem[] = [
   {
     type: FormTypes.Text,
     placeholder: "Jane",
-    id: "firstName",
+    id: "first_name",
     label: "First Name",
     required: true,
   },
   {
     type: FormTypes.Text,
     placeholder: "Doe",
-    id: "lastName",
+    id: "last_name",
     label: "Last Name",
     required: true,
   },
