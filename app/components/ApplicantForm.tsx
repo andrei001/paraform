@@ -12,7 +12,7 @@ interface IApplicantForm {
   onSubmit: (applicationData: object) => void;
 }
 
-export const ApplicantForm = ({ form, schools, onSubmit }: IApplicantForm) => {
+export const ApplicantForm = ({ form, schools }: IApplicantForm) => {
   const [applicantData, setApplicantData] = useState<object>({});
   const getMatchingFormInput = (e: FormItem) => {
     switch (e.type) {
@@ -55,7 +55,6 @@ export const ApplicantForm = ({ form, schools, onSubmit }: IApplicantForm) => {
       <Button
         variant="contained"
         style={{ marginTop: "24px" }}
-        onClick={() => onSubmit(applicantData)}
       >
         Submit
       </Button>
