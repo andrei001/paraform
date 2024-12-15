@@ -1,8 +1,7 @@
 "use server"
 
 export const onSubmit = async (applicationData: object) => {
-    "use server"
-    fetch("https://harvest.greenhouse.io/v1/candidates", {
+    const res = await fetch("https://harvest.greenhouse.io/v1/candidates", {
       method: "POST",
       body: JSON.stringify({
         ...applicationData,
@@ -14,4 +13,6 @@ export const onSubmit = async (applicationData: object) => {
         "On-Behalf-Of": "4280249007",
       },
     });
+    const response = await res.json();
+    console.log(response)
   };
