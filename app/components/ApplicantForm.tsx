@@ -14,7 +14,6 @@ interface IApplicantForm {
 
 export const ApplicantForm = ({ form, schools, onSubmit }: IApplicantForm) => {
   const [applicantData, setApplicantData] = useState<object>({});
-  console.log(applicantData);
   const getMatchingFormInput = (e: FormItem) => {
     switch (e.type) {
       case FormTypes.Text:
@@ -56,7 +55,7 @@ export const ApplicantForm = ({ form, schools, onSubmit }: IApplicantForm) => {
       <Button
         variant="contained"
         style={{ marginTop: "24px" }}
-        onClick={onSubmit}
+        onClick={() => onSubmit(applicantData)}
       >
         Submit
       </Button>
